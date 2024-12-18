@@ -1,0 +1,52 @@
+@use "../component/mixis.scss" as *;
+.footer {
+  display: grid;
+  gap: 1.5rem;
+  padding-block-start: 2rem;
+  padding-block-end: 9vh;
+  width: 100%;
+  min-height: 10vh;
+  background-color: rgb(var(--Black));
+  @include media($desktop) {
+    padding-block-end: 11vh;
+  }
+}
+
+@supports (min-height: 10svh) {
+  .footer {
+    min-height: 10svh;
+  }
+}
+
+.footer {
+  //?===============================================
+  //?===============================================
+  //?===============================================
+  //!=============================================[Media]
+  &__media-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+  }
+  .link {
+    display: inline-block;
+  }
+
+  //?===============================================
+  //?===============================================
+  //?===============================================
+  //!=============================================[Navigate]
+  .list--footer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  //?===============================================
+  //?===============================================
+  //?===============================================
+  //!=============================================[Copyright]
+  &__copyright {
+    text-align: center;
+  }
+}

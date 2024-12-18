@@ -1,0 +1,476 @@
+@use "../component/mixis.scss" as *;
+$desktop: 64em;
+.home-body {
+  display: grid;
+  padding-bottom: 3rem;
+  gap: clamp(4.5rem, 10vh, 8rem);
+}
+
+.home__card {
+  padding-inline: 0.5rem;
+  display: grid;
+  gap: 0.8rem;
+}
+//?=========================================
+//?=========================================
+//?=========================================
+//!=========================================[CardSlider]
+.card-wrapper {
+  position: relative;
+}
+.card-slider {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: clamp(15rem, 100%, 20rem);
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  overscroll-behavior-inline: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  min-height: 20vh;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  &.slider--small {
+    @include media($desktop) {
+      justify-content: space-between;
+    }
+  }
+
+  &__container {
+    scroll-snap-align: center;
+    &.schedule--card {
+      cursor: pointer;
+    }
+  }
+
+  &__control-card {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--crl-White);
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transition: background-color 0.5s ease-in-out, box-shadow 0.5s ease-in-out,
+      opacity 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    @include insetShadow(0.4);
+    &:hover {
+      @include insetShadow(0.4, true);
+      background-color: rgb(var(--Black));
+    }
+
+    &.control--right {
+      transform: rotate(180deg);
+      left: 92%;
+    }
+    &.control--left {
+      right: 92%;
+    }
+
+    &.active {
+      opacity: 1;
+      pointer-events: all;
+      visibility: visible;
+    }
+  }
+}
+//?=======================================
+//?=======================================
+//?=======================================
+//!=======================================[Brand deals]
+.brand-deals {
+  width: 100%;
+  height: 3rem;
+  margin-block: clamp(6.5rem, 7vh, 8rem);
+  padding-inline: 0.8rem;
+  display: flex;
+  justify-content: space-around;
+
+  &__container {
+    position: relative;
+    width: clamp(10rem, 15vw, 20rem);
+    min-height: 5rem;
+    border-radius: 20rem;
+    background-color: var(--crl-Brand-light);
+    display: grid;
+    place-items: center;
+    @include insetShadow(0.2);
+    transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transform: scale(0.85);
+
+    &:hover {
+      transform: scale(0.9);
+    }
+
+    @include media($desktop) {
+      transform: scale(1);
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+
+    &::before {
+      content: "";
+      inset: 0;
+      position: absolute;
+      border-radius: inherit;
+      z-index: -1;
+      transform: scale(1.1);
+      background-color: transparent;
+      opacity: 1;
+      @include shadow(0.3);
+      transition: opacity 0.5s cubic-bezier(0.075, 0.82, 0.165, 1),
+        background-color 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+
+    &:hover::before {
+      background-color: var(--crl-Primary-light);
+      opacity: 0.1;
+    }
+  }
+}
+
+//?=======================================================
+//?=======================================================
+//?=======================================================
+//!============================================================[Rate Card]
+.advert-wrapper {
+  display: grid;
+  place-self: center;
+}
+.advert-container {
+  width: fit-content;
+  margin-inline: auto;
+  margin-block: 2.5rem;
+}
+
+//?=======================================================
+//?=======================================================
+//?=======================================================
+//!============================================================[About us]
+.about-us {
+  .about-us__container {
+    width: clamp(29rem, 90%, 69rem);
+    margin-inline: auto;
+
+    @include media($desktop) {
+      width: clamp(40rem, 100%, 80rem);
+    }
+  }
+}
+
+//?=======================================================
+//?=======================================================
+//?=======================================================
+//!============================================================[Contact us]
+.contact {
+  margin: auto;
+  display: grid;
+  place-items: center;
+
+  &__form {
+    --_width: clamp(29rem, 100%, 35rem);
+    width: var(--_width);
+    display: grid;
+    gap: 1rem;
+    border-radius: 2rem;
+    padding: 1.5rem;
+    @include insetShadow(0.2);
+    background-color: rgb(var(--Black) / 0.8);
+
+    @include media($desktop) {
+      width: calc(var(--_width) * 1.5);
+    }
+  }
+}
+
+.label {
+  --_opacity: 0;
+  --_outline: var(--crl-Secondary-light);
+  display: grid;
+  gap: 0.5rem;
+
+  &.label--error {
+    --_opacity: 1;
+    --_outline: rgb(179, 0, 0);
+  }
+}
+
+.heading--error {
+  font-style: italic;
+  color: var(--_outline);
+  opacity: var(--_opacity);
+  transition: opacity 0.5s ease-in-out;
+  @include font-size(0.59);
+}
+
+.form__input {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  outline: 1px solid var(--_outline);
+  @include font-size(0.7);
+  font-family: var(--fnt-alt);
+  @include shadow(0.1);
+  color: var(--crl-White);
+  background-color: transparent;
+  transition: box-shadow 0.5s ease-in-out, outline 0.5s ease-in-out,
+    outline 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  &:hover {
+    @include insetShadow(0.1);
+  }
+
+  &:focus-within {
+    outline: 2px solid var(--_outline);
+  }
+}
+
+.form__textarea {
+  resize: none;
+  aspect-ratio: 2.5/1;
+  border-radius: 0.6rem;
+  padding: 1rem;
+  border: none;
+  outline: 1px solid var(--_outline);
+  @include font-size(0.7);
+  font-family: var(--fnt-alt);
+  @include shadow(0.1);
+  color: var(--crl-White);
+  background-color: transparent;
+  transition: box-shadow 0.5s ease-in-out, outline 0.5s ease-in-out,
+    outline 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  &:hover {
+    @include insetShadow(0.1);
+  }
+
+  &:focus-within {
+    outline: 2px solid var(--_outline);
+  }
+
+  @include media($desktop) {
+    aspect-ratio: 3.3/1;
+  }
+}
+
+.submit-form {
+  margin-inline: auto;
+  width: 80%;
+}
+
+.btn {
+  &.btn--submit {
+    border: none;
+    background-color: var(--crl-Brand-light);
+    color: var(--crl-Secondary-dark);
+    border-radius: 0.5rem;
+    width: 100%;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    @include insetShadow(0.2);
+    @include font-size(0.8);
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    transition: color 0.5s cubic-bezier(0.075, 0.82, 0.165, 1),
+      background-color 0.5s cubic-bezier(0.23, 1, 0.32, 1),
+      transform 0.5s cubic-bezier(0.755, 0.05, 0.855, 0.06);
+
+    &:hover {
+      color: rgb(var(--Black));
+      background-color: var(--crl-Primary-dark);
+      transform: skewX(4deg);
+    }
+
+    &:disabled {
+      background-color: rgb(176, 176, 176);
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+  }
+}
+
+//?=======================================================
+//?=======================================================
+//?=======================================================
+//!============================================================[Podcast/ Donation]
+.podcast,
+.donation {
+  display: grid;
+  place-items: center;
+}
+
+//?=======================================================
+//?=======================================================
+//?=======================================================
+//!============================================================[Missing/ Error-boundary]
+
+.missing-content,
+.error-boundary {
+  display: grid;
+  gap: 1.2rem;
+
+  .link-missing {
+    display: block;
+    margin-inline: auto;
+    width: fit-content;
+    height: fit-content;
+    @include insetShadow(0.1);
+  }
+}
+
+.error-boundary {
+  .btn-container {
+    width: fit-content;
+    height: fit-content;
+    margin-inline: auto;
+  }
+}
+
+//?===========================================
+//?===========================================
+//?===========================================
+//!=======================================[Schedule]
+.schedule {
+  width: clamp(29rem, 90%, 144rem);
+  margin-inline: auto;
+  padding-block-start: 2rem;
+  display: grid;
+  gap: 3rem;
+  // border: 1px solid red;
+  //?=================================[heading]
+  &__heading {
+    justify-content: center;
+  }
+
+  &__mobile {
+    display: flex;
+    @include media($desktop) {
+      display: none;
+    }
+  }
+  &__desktop {
+    display: none;
+    @include media($desktop) {
+      display: block;
+    }
+  }
+
+  //?==============================[mobile]
+  &__mobile {
+    // background-color: red;
+  }
+  //?====================[Mobile dropdown]
+  &__dropdown {
+    width: clamp(28rem, 90%, 39rem);
+    margin-inline: auto;
+    text-align: center;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    font-weight: var(--fnt-Weight-bd);
+    background-color: rgb(var(--White) / 0.8);
+    outline: 1px solid transparent;
+    border: 1px solid transparent;
+    cursor: pointer;
+    @include insetShadow(0.1);
+    @include font-size(0.9);
+    transition: border 0.5s cubic-bezier(0.075, 0.82, 0.165, 1),
+      outline 0.5s cubic-bezier(0.23, 1, 0.32, 1),
+      background-color 0.5s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+    &:hover {
+      @include insetShadow(0.2);
+      background-color: rgb(var(--White) / 0.95);
+    }
+
+    &:focus {
+      background-color: rgb(var(--White) / 0.95);
+      border: 1px solid var(--crl-Secondary-dark);
+      outline: 1px solid var(--crl-Secondary-dark);
+    }
+  }
+
+  &__option {
+    color: var(--crl-Secondary-dark);
+    background-color: rgb(var(--White) / 0.6);
+    @include insetShadow(0.2);
+  }
+
+  &__option.active--option {
+    background-color: var(--crl-Brand-light);
+  }
+  //?=============================================[Desktop]
+
+  &__desktop {
+    padding-block: 2rem;
+    padding-inline: 1rem;
+    background-color: rgb(var(--crl-Brand) / 0.5);
+    @include insetShadow(0.2);
+    border-radius: 0.5rem;
+  }
+
+  &__list {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  //?============[item]
+  &__item {
+    position: relative;
+    color: var(--crl-Secondary-dark);
+    @include font-size(0.8);
+    font-weight: var(--fnt-Weight-bd);
+    transform-origin: center;
+    cursor: pointer;
+    transition: transform 0.5s ease-in;
+
+    &::before {
+      content: "";
+      position: absolute;
+      background-color: transparent;
+      opacity: 0;
+      width: 0%;
+      height: 0px;
+      top: clamp(3rem, 200%, 4.5rem);
+      transition: width 0.6s cubic-bezier(0.445, 0.05, 0.55, 0.95),
+        opacity 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955),
+        background-color 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95),
+        height 0.1s ease;
+    }
+
+    &:hover::before {
+      background-color: rgb(var(--White));
+      opacity: 0.4;
+      width: 100%;
+      height: 1px;
+    }
+
+    &.active--day {
+      cursor: not-allowed;
+      transform: translateY(-0.5rem);
+      border: 0.5rem;
+      &::before {
+        background-color: rgb(var(--White));
+        height: 1.5px;
+        opacity: 1;
+        width: 100%;
+      }
+    }
+  }
+
+  //?========================================[Body]
+  &__cards {
+    --width: clamp(15rem, 100%, 28rem);
+    min-height: 50vh;
+    margin-block: 2rem;
+    display: grid;
+    gap: 1.5rem;
+    justify-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(var(--width), 1fr));
+  }
+}

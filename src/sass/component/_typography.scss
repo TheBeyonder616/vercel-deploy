@@ -1,0 +1,169 @@
+@use "./mixis.scss" as *;
+// ?===================================
+// ?===================================
+// ?===================================
+//!===============================[Heading-Secondary]
+.heading-secondary {
+  @include font-size(0.8);
+  &.whatsapp--heading {
+    letter-spacing: 0.5px;
+    color: var(--crl-White);
+  }
+
+  &.comment--heading {
+    @include font-size();
+    color: var(--crl-Secondary-dark);
+    font-weight: var(--fnt-Weight-md);
+  }
+
+  &.heading--advert,
+  &.heading--podcast,
+  &.heading--donation {
+    text-align: center;
+    color: var(--crl-White);
+    @include font-size(2.5);
+  }
+
+  &.heading--about {
+    line-height: 1.6;
+    color: var(--crl-White);
+    text-align: center;
+    @include font-size(2);
+  }
+
+  &.heading--contact {
+    height: fit-content;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.6;
+    color: var(--crl-White);
+    @include font-size(2);
+  }
+
+  &.heading--missing {
+    color: var(--_404);
+    @include font-size(2);
+  }
+
+  &.heading--error-boundary {
+    color: rgb(255, 0, 0);
+    text-align: center;
+    @include font-size(1.5);
+  }
+
+  &.heading--card {
+    @include font-size(1.1);
+    padding-inline-start: 0.5rem;
+    color: var(--crl-White);
+  }
+}
+
+// ?===================================
+// ?===================================
+// ?===================================
+//!===============================[Heading-Third]
+.heading-third {
+  @include font-size(0.8);
+
+  &.link--heading {
+    color: var(--crl-White);
+    letter-spacing: 0.5px;
+  }
+
+  &.heading--form {
+    color: var(--crl-White);
+    font-weight: var(--fnt-Weight-bd);
+  }
+
+  &.heading--location {
+    text-align: center;
+    color: var(--crl-White);
+  }
+
+  &.heading--about {
+    @include font-size();
+    line-height: 1.5;
+    text-align: center;
+    color: var(--crl-White);
+  }
+}
+
+// ?===================================
+// ?===================================
+// ?===================================
+//!===============================[Heading-p / Subs]
+.heading--radio {
+  @include font-size(0.4);
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  color: var(--crl-Secondary-light);
+
+  @include media($desktop) {
+    @include font-size(0.45);
+  }
+}
+
+.heading-p {
+  color: var(--crl-Secondary-light);
+  @include font-size(0.65);
+
+  &.heading-copyright {
+    color: var(--crl-White);
+    .span {
+      text-transform: uppercase;
+      transition: color 0.5s ease-in-out;
+      &:hover {
+        color: var(--crl-Primary-dark);
+      }
+    }
+  }
+
+  &.heading--about {
+    color: rgb(var(--White) / 0.7);
+    text-align: center;
+    line-height: 1.2;
+    @include font-size(0.9);
+
+    .span {
+      display: block;
+      margin-block: 1rem;
+      @include media($desktop) {
+        margin-block: 1.4rem;
+      }
+    }
+  }
+
+  &.heading--missing {
+    color: var(--crl-White);
+    @include font-size(0.8);
+  }
+  &.heading--error-boundary {
+    color: rgb(var(--White));
+    text-align: center;
+    @include font-size(1.2);
+  }
+}
+
+@supports (overflow-wrap: break-word) {
+  .heading-p.heading--about {
+    overflow-wrap: break-word;
+  }
+}
+
+.heading-views {
+  color: var(--crl-Secondary-dark);
+  font-weight: var(--fnt-Weight-bd);
+  text-align: center;
+  @include font-size(0.64);
+
+  .span {
+    display: block;
+  }
+
+  &.text--heading {
+    color: var(--crl-Secondary-dark);
+    font-family: $font-view;
+    @include font-size(0.55);
+    text-shadow: 0.16rem 0.1rem 0 rgb(38 89 115 /0.2);
+  }
+}

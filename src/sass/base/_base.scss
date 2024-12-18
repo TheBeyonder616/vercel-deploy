@@ -1,0 +1,223 @@
+@use "../component/mixis.scss" as *;
+//!========================================================[Root]
+:root {
+  //!=============================[Colors]
+  //?[Primary]
+  --crl-Primary-dark: rgb(255 125 26);
+  --crl-Primary-light: rgb(255 125 26/0.5);
+  //?[Secondary]
+  --crl-Secondary-dark: hsl(220, 13%, 13%);
+  --crl-Secondary-light: rgb(102 102 102);
+  //?[Neutral]
+  // --crl-Brand-light: rgb(248 217 48);
+  --crl-Brand-light: rgb(217, 166, 39);
+  --crl-Brand-dark: rgb(255 255 0 /0.5);
+  --crl-Brand: 217 166 39;
+  --crl-Black: rgb(26 26 26);
+  --crl-White: rgb(247 248 253);
+  --crl-White-dark: rgb(255 255 255 /0.4);
+  //?[Shorthand]
+  --Black: 0 0 0;
+  --White: 255 255 255;
+  --shadow-Inset: inset -0.2rem -0.4rem 0.8rem;
+  --shadow: 0.2rem 0.4rem 0.8rem;
+  //!==============================[Fonts]
+  //?[Default Size]
+  --font-Size: clamp(1.9rem, 2.1vw, 2.9rem);
+  //?[Weights]
+  --fnt-Weight-bd: 700;
+  --fnt-Weight-mid: 500;
+  --fnt-Weight-rg: 400;
+}
+
+$desktop: 64em;
+//?=============================================================
+//?=============================================================
+//?=============================================================
+//! ===============================================================[Fonts]
+@font-face {
+  font-family: "League Spartan";
+  src: url(/fonts/League_Spartan/static/LeagueSpartan-Regular.ttf)
+    format("truetype");
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "League Spartan";
+  src: url(/fonts/League_Spartan/static/LeagueSpartan-Bold.ttf)
+    format("truetype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "League Spartan";
+  src: url(/fonts/League_Spartan/static/LeagueSpartan-Medium.ttf)
+    format("truetype");
+
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "League Spartan";
+  src: url(/fonts/League_Spartan/static/LeagueSpartan-Regular.ttf)
+    format("truetype");
+
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url(/fonts/League_Spartan/Roboto/Roboto-Bold.ttf) format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+//!============================[Media]
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+li {
+  list-style: none;
+}
+
+a,
+a:visited,
+a:link {
+  color: currentColor;
+  text-decoration: none;
+}
+
+//!=====================================================[Base]
+body {
+  font-family: $font-default;
+  background-color: var(--crl-Black);
+}
+
+.main {
+  min-height: 100vh;
+  transition: background 1s ease-in-out;
+  &.main--advert-rate,
+  &.main--about,
+  &.main--contact,
+  &.main--podcast,
+  &.main--donation {
+    padding: 2.5rem;
+    display: grid;
+    place-items: center;
+  }
+
+  //? ==================[about]
+  &.main--about {
+    @include media($desktop) {
+      min-height: 110vh;
+    }
+  }
+
+  //? ==================[contact]
+  &.main--contact {
+    @include media($desktop) {
+      min-height: 120vh;
+    }
+  }
+
+  // ? ==================[podcast]
+  //? ==================[loading]
+  &.main--loading {
+    display: grid;
+    place-items: center;
+
+    .loader {
+      --_width: clamp(3.5rem, 6vw, 5.5rem);
+      width: var(--_width);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      display: inline-block;
+      position: relative;
+      background: linear-gradient(
+        0deg,
+        rgba(255, 61, 0, 0.2) 33%,
+        rgb(255, 61, 0) 100%
+      );
+      animation: spin 1s linear infinite;
+    }
+    .loader::after {
+      content: "";
+      box-sizing: border-box;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: calc(var(--_width) * 0.9);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: #263238;
+    }
+  }
+
+  //? ==================[missing]
+  &.main--missing {
+    --_404: rgb(231 76 60);
+    display: grid;
+    place-items: center;
+    text-align: center;
+    background-color: rgb(var(--Black) / 0.5);
+  }
+
+  //? ==================[error]
+  &.main--error-boundary {
+    background-color: rgb(var(--Black) / 0.5);
+    display: grid;
+    place-items: center;
+  }
+}
+
+@supports (min-height: 100svh) {
+  .main {
+    min-height: 100svh;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 0.1rem;
+  height: 0.1rem;
+  margin: -0.1rem;
+  padding: 0;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+//!=======================[DOM]
+.hide {
+  display: none !important;
+}
+
+.lazy--img {
+  opacity: 0 !important;
+}
+
+.lazy--img-container {
+  animation: lazyImage 2s infinite ease !important;
+}

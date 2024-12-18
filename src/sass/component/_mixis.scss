@@ -1,0 +1,44 @@
+@use "sass:math";
+
+$font-view: "Roboto";
+$font-default: "League Spartan";
+$desktop: 64em;
+
+@mixin grid-Card($gap: 1.5em) {
+  display: grid;
+  gap: $gap;
+}
+
+@mixin font-size($num: 1) {
+  font-size: calc(var(--font-Size) * $num);
+}
+
+//!=======================================[Shadows]
+@mixin insetShadow($opacity, $color: null) {
+  @if $color == null {
+    box-shadow: var(--shadow-Inset) rgb(var(--Black) / $opacity);
+  } @else if $color == true {
+    box-shadow: var(--shadow-Inset) rgb(var(--White) / $opacity);
+  }
+}
+
+@mixin shadow($opacity, $color: null) {
+  @if $color == null {
+    box-shadow: var(--shadow) rgb(var(--Black) / $opacity);
+  } @else if $color == true {
+    box-shadow: var(--shadow) rgb(var(--White) / $opacity);
+  }
+}
+
+//!====================================================[Media]
+@mixin media($width: 64em, $base-font-size: 16px) {
+  $em-width: if(
+    math.div($width, $base-font-size) == "px",
+    math.div($width, $base-font-size),
+    $width
+  );
+
+  @media only screen and (min-width: $em-width) {
+    @content;
+  }
+}

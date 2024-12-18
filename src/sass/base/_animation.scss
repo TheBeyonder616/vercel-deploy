@@ -1,0 +1,44 @@
+//?============================================================
+//?============================================================
+//?============================================================
+//!================================================[Animation]
+//prettier-ignore
+@keyframes spin {
+    0% {transform: rotate(0deg);}
+    100% { transform: rotate(360deg);}
+  }
+
+//prettier-ignore
+@keyframes blink{
+    0%{opacity: 0.2;}
+    50%{opacity: 0.5;}
+    100%{opacity: 1;}
+  }
+
+//prettier-ignore
+@keyframes grow {
+    0% {transform: scale(1);}
+    50% {transform: scale(0.8);}
+    100% {transform: scale(1);}
+  }
+
+//prettier-ignore
+@keyframes gradientAnimation {
+    0% {background: radial-gradient(circle, violet, indigo, blue, green, yellow, orange, red);}
+    50% {background: radial-gradient(circle, red, orange, yellow, green, blue, indigo, violet);}
+    100% {background: radial-gradient(circle, violet, indigo, blue, green, yellow, orange, red);}
+  }
+//prettier-ignore
+@keyframes musicPulse {
+    0% {transform: scaleY(0.3);}
+    30% {transform: scaleY(1);}
+    60% {transform: scaleY(0.5);}
+    80% { transform: scaleY(0.75);}
+    100% {transform: scaleY(0.6);}
+  }
+
+//prettier-ignore
+@keyframes lazyImage{
+    0%{background-color: rgb(var(--White) / 0.5)}
+    100%{ background-color: rgb(var(--Black) / 0.2)}
+  }

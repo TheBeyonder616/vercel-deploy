@@ -1,0 +1,726 @@
+@use "./mixis.scss" as *;
+//?===================================
+//?===================================
+//?===================================
+//!=============================={Images}
+.img-container {
+  --width: 100%;
+  --aspect-ratio: 1;
+  width: var(--width);
+  aspect-ratio: var(--aspect-ratio);
+  overflow: hidden;
+
+  &.logo--container {
+    --width: clamp(2rem, 15vw, 11rem);
+    --aspect-ratio: 3/1;
+    display: flex;
+    cursor: pointer;
+  }
+
+  &.card--container {
+    --width: clamp(15rem, 100%, 20rem);
+    --aspect-ratio: 1;
+    position: relative;
+    border-radius: 0.9rem;
+    transform: scale(0.95);
+    transition: transform ease-in 0.5s;
+
+    &:hover {
+      transform: scale(1);
+    }
+
+    &::before {
+      content: "";
+      inset: 0;
+      background-color: transparent;
+      position: absolute;
+      border-radius: inherit;
+      @include insetShadow(0.2);
+      transition: box-shadow 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      border-radius: inherit;
+      transform: scale(1.05);
+      background-color: var(--crl-Secondary-light);
+      transition: opacity 0.5s ease-in-out;
+      opacity: 0.5;
+      @include shadow(0.5);
+    }
+
+    &:hover::before {
+      @include insetShadow(0.5);
+    }
+
+    &:hover::after {
+      opacity: 0;
+    }
+
+    .img {
+      border-radius: inherit;
+    }
+  }
+  //?============================[schedule]
+  &.schedule--img {
+    border-radius: 0.5rem;
+    position: relative;
+
+    &::before {
+      content: "";
+      z-index: 2;
+      inset: 0;
+      border-radius: inherit;
+      position: absolute;
+      background-color: rgb(var(--Black) / 0.1);
+    }
+  }
+}
+
+.img,
+.video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  font-style: italic;
+  object-fit: cover;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+//?==================================
+//?==================================
+//?==================================
+//!==================================[Svg]
+.svg-container {
+  --width: clamp(2rem, 2.1vw, 4rem);
+  --aspect-ratio: 1;
+  width: var(--width);
+  aspect-ratio: var(--aspect-ratio);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  // color: red;
+
+  //?[Menu SVG Icon]
+  &.menu--svg {
+    --width: clamp(2rem, 2.1vw, 4rem);
+    color: var(--crl-Secondary-dark);
+    cursor: pointer;
+    @include media($desktop) {
+      display: none;
+    }
+  }
+
+  &.close--svg {
+    display: grid;
+    justify-self: end;
+    margin: 2rem;
+    color: var(--crl-White);
+    cursor: pointer;
+    @include shadow(0.1);
+    transition: box-shadow 0.5s cubic-bezier(0.39, 0.575, 0.565, 1);
+    &:hover {
+      @include insetShadow(0.5);
+    }
+  }
+
+  &.play--svg {
+    color: rgb(var(--Black));
+    align-self: center;
+    .svg:hover {
+      animation: grow 1.5s linear infinite;
+    }
+
+    &.spin--svg {
+      animation: spin 1s linear infinite;
+      .svg:hover {
+        animation: unset;
+      }
+    }
+  }
+
+  &.whatsapp--container {
+    --width: clamp(2.5rem, 3.4vw, 5.5rem);
+    cursor: pointer;
+  }
+
+  &.whatsapp-close--container {
+    --width: clamp(1.8rem, 2.1vw, 2.3rem);
+    cursor: pointer;
+    color: var(--crl-White);
+    background-color: rgb(var(--Black) / 0.8);
+    border-radius: 50%;
+    @include insetShadow(0.1, true);
+    transition: background-color 0.5s cubic-bezier(0.075, 0.82, 0.165, 1),
+      box-shadow 0.5s ease-in-out, color 0.5s ease;
+    transform: scale(1.1);
+    &:hover {
+      background-color: var(--crl-White);
+      @include insetShadow(0.2);
+      color: rgb(var(--Black));
+    }
+    .svg {
+      transform: scale(0.7);
+    }
+  }
+
+  &.text-whatsapp--container {
+    --width: clamp(3.2rem, 3.5vw, 6.5rem);
+    --aspect-ratio: 1;
+  }
+
+  &.chat--container {
+    fill: var(--crl-White);
+  }
+
+  &.spin--svg {
+    --width: clamp(2.5rem, 2vw, 3.5rem);
+    color: var(--crl-Primary-dark);
+    animation: spin 0.5s linear infinite;
+  }
+
+  &.arrow--svg {
+    --width: clamp(3rem, 3vw, 4.5rem);
+    cursor: pointer;
+    color: rgb(var(--Black));
+
+    &:hover {
+      color: var(--crl-Primary-dark);
+    }
+  }
+
+  &.facebook--svg,
+  &.twitter--svg,
+  &.instagram--svg {
+    transform: scale(1.2);
+    fill: var(--crl-Secondary-light);
+    stroke: var(--crl-Secondary-light);
+    color: var(--crl-Secondary-light);
+    transition: color 0.5s ease-in-out;
+    &:hover {
+      fill: var(--crl-Primary-dark);
+      stroke: var(--crl-Primary-dark);
+      color: var(--crl-Primary-dark);
+    }
+  }
+
+  &.mtn--svg {
+    --aspect-ratio: 2/1;
+    transform: scale(4);
+    border-radius: 50%;
+    color: rgb(var(--Black));
+  }
+
+  &.kellogg--svg {
+    --aspect-ratio: 2/1;
+    transform: scale(3);
+  }
+
+  &.huawei--svg {
+    --aspect-ratio: 2/1;
+    transform: scale(4);
+  }
+
+  &.lagos-chops--svg {
+    --aspect-ratio: 1;
+    transform: scale(1.8);
+    border-radius: 0.5rem;
+  }
+
+  &.logo--svg {
+    width: clamp(7rem, 9vw, 10rem);
+    --aspect-ratio: 2/1;
+    transform: scale(2.5);
+  }
+
+  &.message--svg {
+    width: clamp(2.5rem, 3vw, 6rem);
+  }
+
+  &.glob--svg {
+    width: clamp(1.5rem, 2vw, 2.5rem);
+    animation: spin 2.5s linear infinite;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  color: currentColor;
+}
+
+//?==================================================
+//?==================================================
+//?==================================================
+//!========================[Buttons and links]
+.a {
+  &.a--link {
+    @include font-size();
+    font-weight: var(--fnt-Weight-rg);
+    color: var(--crl-White);
+    cursor: pointer;
+    border: 0.1rem solid transparent;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    transition: color 0.5s ease-in-out,
+      box-shadow 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+    @include media($desktop) {
+      color: rgb(var(--Black));
+      @include font-size(0.8);
+    }
+
+    &:hover {
+      color: var(--crl-Primary-dark);
+      @include media($desktop) {
+        color: var(--crl-Secondary-dark);
+      }
+    }
+
+    &.active--link {
+      @include shadow(0.1);
+      border-radius: 0.5rem;
+      &:hover {
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &.a--advert {
+    display: inline-block;
+    color: var(--crl-White);
+    font-weight: var(--fnt-Weight-bd);
+    text-transform: uppercase;
+    @include font-size();
+    background-color: var(--crl-Secondary-dark);
+    border-radius: 0.5rem;
+    padding: 1.2rem 2rem;
+    letter-spacing: 0.8rem;
+    margin-inline: auto;
+    @include insetShadow(0.2);
+    transition: background-color 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955),
+      color 0.5s ease-in, transform 0.5s ease;
+
+    &:hover {
+      background-color: var(--crl-Brand-light);
+      color: rgb(var(--Black));
+      @include insetShadow(0.3);
+      transform: translateY(0.5rem);
+    }
+  }
+}
+
+//?=============================================[Send]
+.btn-send {
+  display: inline-flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: rgb(254, 254, 254);
+  border: 0.1rem solid rgb(219, 219, 219);
+  border-radius: 1.2rem;
+
+  font-family: "Ubuntu", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  color: rgb(51, 51, 51);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  outline: 2px solid rgb(250, 250, 250);
+  box-shadow: 0.9rem 0.9rem 4.4rem rgba(206, 206, 206, 0.227),
+    -0.9rem -0.9rem 4.4rem rgba(211, 211, 211, 0.239),
+    inset 0 0 0 2px rgba(192, 192, 192, 0.25);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0.3rem;
+    left: 0.3rem;
+    right: 0.3rem;
+    bottom: 0.3rem;
+    border-radius: 3rem;
+    background: linear-gradient(
+      0deg,
+      rgb(251, 251, 251) 0%,
+      rgb(250, 250, 250) 5%,
+      rgb(247, 247, 247) 72%,
+      rgb(242, 242, 242) 86%,
+      rgb(240, 240, 240) 100%
+    );
+    box-shadow: inset 0 0.2rem 0.7rem rgba(143, 143, 143, 0.16);
+    transition: all 0.3s ease;
+    z-index: -1;
+    margin: 0.2rem;
+  }
+
+  &:hover::before {
+    top: 0.1rem;
+    left: 0.1rem;
+    right: 0.1rem;
+    bottom: 0.1rem;
+    margin: 0.5rem;
+  }
+
+  &:focus {
+    outline: 2px solid rgb(var(--White));
+    box-shadow: 0.9rem 0.9rem 4.4rem rgba(206, 206, 206, 0.227),
+      -0.9rem -0.9rem 4.4rem rgba(211, 211, 211, 0.239),
+      inset 0 0 0 2px rgba(192, 192, 192, 0.5);
+  }
+
+  .send-icon {
+    margin-right: 0.5rem;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover .send-icon {
+    transform: translateX(0.7rem);
+  }
+
+  &:focus .send-icon {
+    transform: rotate(-40deg);
+  }
+}
+
+// ?==============================================================
+// ?==============================================================
+// ?==============================================================
+//!==================================[Whatsapp popup]
+.whatsapp {
+  --_background: rgb(37 211 102);
+  // position: fixed;
+  // top: 85%;
+  // left: 85%;
+  // z-index: 20;
+
+  //!===============================[Popup]
+  &__popup {
+    --_width: clamp(20rem, 100%, 25rem);
+    position: fixed;
+    width: var(--_width);
+    background-color: var(--_background);
+    aspect-ratio: 2/1.6;
+    border-radius: 1.5rem;
+    inset: 0;
+    margin: auto;
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: 30% 70%;
+    transition-behavior: allow-discrete;
+    transition: display 2s ease;
+    @include media($desktop) {
+      --_width: clamp(20rem, 100%, 30rem);
+    }
+
+    .close-popup {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.8rem;
+      @include insetShadow(0.1);
+      grid-area: 1/1/2/-1;
+    }
+  }
+
+  .wrapper-whatsapp {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+  }
+
+  .wrapper-close-icon {
+    display: grid;
+    place-items: center;
+  }
+
+  .contact {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    // grid-area: 2/1/-1/-1;
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+    background-color: var(--crl-White);
+    @include insetShadow(0.4);
+  }
+  //!=================================[Link]
+  .link {
+    display: grid;
+    place-items: center;
+    gap: 1rem;
+    background-color: var(--_background);
+    border-radius: 10rem;
+    padding: 2rem 2.5rem;
+    transform: scale(0.9);
+    @include insetShadow(0.3);
+    transition: transform 0.5s ease-in-out,
+      box-shadow 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+    &:hover {
+      transform: scale(1);
+      @include insetShadow(0.4);
+    }
+  }
+  .link__container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  //!==================================[Wrapper]
+  .comment-wrapper {
+    display: grid;
+    place-items: center;
+    transform: skewX(-10deg);
+    width: 85%;
+    margin-inline: auto;
+    margin-block: 1rem;
+    border-radius: 0.5rem;
+    padding: 0.7rem;
+    @include insetShadow(0.5);
+  }
+
+  .link-wrapper {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+  }
+  .link-container {
+    padding-inline: 1rem;
+    padding-block: 1rem;
+    width: fit-content;
+    height: fit-content;
+  }
+
+  &__container {
+    transition-behavior: allow-discrete;
+    transition: display 2s ease;
+  }
+}
+// ?==============================================================
+// ?==============================================================
+// ?==============================================================
+//!=======================================[Slider]
+.slider {
+  width: clamp(29rem, 100%, 144rem);
+  aspect-ratio: 16/9;
+  margin-inline: auto;
+  overflow: hidden;
+  position: relative;
+
+  //!==============================[Slide]
+  &__slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    inset: 0;
+    transition: transform 1.5s cubic-bezier(0.23, 1, 0.32, 1);
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      inset: 0;
+      background-color: rgb(var(--Black) / 0.3);
+    }
+  }
+  //!==============================[dots]
+  &__dot-container {
+    position: absolute;
+    display: inline-flex;
+    gap: 0.09rem;
+    height: 0.8rem;
+    width: fit-content;
+    inset: 0;
+    top: 90%;
+    left: 1rem;
+    z-index: 10;
+    border-radius: 2rem;
+    background-color: transparent;
+    @include insetShadow(0.3);
+  }
+
+  &__dot {
+    width: clamp(1.5rem, 1.9vw, 2.3rem);
+    height: 0.5rem;
+    background-color: rgb(var(--White) / 0.3);
+    cursor: pointer;
+    @include insetShadow(0.1);
+    opacity: 0.4;
+    transition: background-color 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+      box-shadow 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+      opacity 0.3s ease-in-out;
+
+    border-top-right-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+
+    &:hover {
+      background-color: rgb(var(--White) / 0.65);
+      opacity: 0.8;
+      @include insetShadow(0.2);
+    }
+
+    &.active {
+      background-color: rgb(var(--White));
+      opacity: 1;
+      cursor: not-allowed;
+      @include insetShadow(0.1);
+    }
+  }
+  //!==============================[controls]
+  &__control {
+    position: absolute;
+    z-index: 10;
+    width: clamp(3rem, 3vw, 4.5rem);
+    aspect-ratio: 1;
+    inset: 0;
+    margin: auto;
+    align-items: center;
+    @include insetShadow(0.3);
+    border-radius: 50%;
+    background-color: var(--crl-White);
+    transition: background-color 0.5s cubic-bezier(0.075, 0.82, 0.165, 1),
+      box-shadow 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+
+    &:hover {
+      background-color: rgb(var(--Black));
+      @include insetShadow(0.3, true);
+    }
+    &.control--left {
+      right: 90%;
+    }
+
+    &.control--right {
+      transform: rotate(180deg);
+      left: 90%;
+    }
+  }
+}
+
+//?=================================================
+//?=================================================
+//?=================================================
+//!=================================================[Button]
+.button {
+  --_background: rgb(136 0 51);
+  --_gradient-right: rgb(205 63 100);
+  --_gradient-left: rgb(157 54 86);
+  -webkit-appearance: none;
+  appearance: none;
+  position: relative;
+  border-width: 0;
+  padding: 0 0.8rem 1.2rem;
+  min-width: 10rem;
+  box-sizing: border-box;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+  @include font-size();
+
+  &__top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 0;
+    padding: 0.8rem 1.6rem;
+    transform: translateY(0);
+    text-align: center;
+    color: rgb(var(--White));
+    text-shadow: 0 -0.1rem rgb(var(--Black) / 0.25);
+    transition-property: transform;
+    transition-duration: 0.2s;
+    -webkit-user-select: none;
+    user-select: none;
+
+    &::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      border-radius: 0.4rem;
+      width: 100%;
+      height: 100%;
+      box-sizing: content-box;
+      background-image: radial-gradient(
+        var(--_gradient-right),
+        var(--_gradient-left)
+      );
+      text-align: center;
+      color: rgb(var(--White));
+      box-shadow: inset 0 0 0rem 0.1rem rgb(var(--White) / 0.2),
+        0 0.1rem.2rem 0.1rem rgb(var(--White) / 0.2);
+      transition-property: border-radius, padding, width, transform;
+      transition-duration: 0.2s;
+    }
+  }
+
+  &:active .button__top {
+    transform: translateY(6px);
+  }
+
+  .button-top .button:active .button-top::after {
+    border-radius: 6px;
+    padding: 0 0.2rem;
+  }
+
+  &__bottom {
+    position: absolute;
+    z-index: -1;
+    bottom: 0.4rem;
+    left: 0.4rem;
+    border-radius: 0.8rem / 1.6rem 1.6rem 0.8rem 0.8rem;
+    padding-top: 6px;
+    width: calc(100% - 0.8rem);
+    height: calc(100% - 1rem);
+    box-sizing: content-box;
+    background-color: var(--_background);
+    background-image: radial-gradient(
+        0.4rem 0.8rem at 0.4rem calc(100% - 0.8rem),
+        rgb(var(--White) / 0.25),
+        transparent
+      ),
+      radial-gradient(
+        0.4rem 0.8rem at calc(100% - 0.4rem) calc(100% - 0.8rem),
+        rgb(var(--White) / 0.25),
+        transparent
+      ),
+      radial-gradient(1.6rem at -0.4rem 0, rgb(var(--White)), transparent),
+      radial-gradient(
+        1.6rem at calc(100% + 0.4rem) 0,
+        rgb(var(--White)),
+        transparent
+      );
+    box-shadow: 0px 0.2rem 0.3rem 0rem rgb(var(--Black) / 0.5),
+      inset 0 -0.1rem 0.3rem 0.3rem rgb(var(--Black) / 0.4);
+    transition-property: border-radius, padding-top;
+    transition-duration: 0.2s;
+  }
+
+  &:active .button-bottom {
+    border-radius: 1rem 1rem 0.8rem 0.8rem / 0.8rem;
+    padding-top: 0;
+  }
+
+  &__base {
+    position: absolute;
+    z-index: -2;
+    top: 0.4rem;
+    left: 0;
+    border-radius: 1.2rem;
+    width: 100%;
+    height: calc(100% - 0.4rem);
+    background-color: rgb(var(--Black) / 0.15);
+    box-shadow: 0 0.1rem 0.1rem 0 rgb(var(--Black) / 0.75),
+      inset 0 0.2rem 0.2rem rgb(var(--Black) / 0.25);
+  }
+}
