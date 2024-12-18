@@ -13,5 +13,15 @@ export default defineConfig({
   clearScreen: false,
   build: {
     outDir: "dist",
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ["react", "react-dom", "react-router-dom"],
+        },
+      },
+    },
+  },
+  optimizeDeps: {
+    include: ["react", "react-dom"],
   },
 });
