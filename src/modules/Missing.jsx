@@ -7,7 +7,7 @@ const Missing = () => {
       <section className="missing-content">
         <h1 className="heading-secondary heading--missing">404</h1>
         <p className="heading-p heading--missing">
-          Oops! The page you're looking for is missing.
+          Oops! The page you&apos;re looking for is missing.
         </p>
         <Link to="/" className="link-missing">
           <button className="button" tabIndex={-1}>

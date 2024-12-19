@@ -19,8 +19,13 @@ export class LazyLoadImages {
   static #lazyLoadMedia(entries, observer) {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
+
       const media = entry.target;
       const src = media.dataset.src;
+
+      let loadListener = () =>
+        LazyLoadImages.#handleLazyLoad(media, loadListener);
+
       switch (media.tagName) {
         case "IMG":
           media.src = src;
@@ -36,8 +41,6 @@ export class LazyLoadImages {
         default:
           console.warn(`${media.tagName} is not supported`);
       }
-      const loadListener = () =>
-        LazyLoadImages.#handleLazyLoad(media, loadListener);
 
       media.tagName === "VIDEO"
         ? media.addEventListener("canplaythrough", loadListener)

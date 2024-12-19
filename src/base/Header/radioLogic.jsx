@@ -100,11 +100,7 @@ export default class Radio {
       videoElement.load();
 
       videoElement.onloadeddata = async () => {
-        try {
-          await Radio.retryPlay(player, videoElement, timeout, id);
-        } catch (error) {
-          throw error;
-        }
+        await Radio.retryPlay(player, videoElement, timeout, id);
 
         loading = false;
         Radio.toggleId(player, id, videoElement, false);

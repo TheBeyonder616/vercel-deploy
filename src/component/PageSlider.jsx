@@ -71,6 +71,8 @@ const PageSlider = forwardRef(
   }
 );
 
+PageSlider.displayName = "PageSlider";
+
 PageSlider.propTypes = {
   id: PropTypes.string,
   src: PropTypes.arrayOf(PropTypes.string).isRequired,

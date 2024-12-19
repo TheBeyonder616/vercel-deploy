@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import Btn from "./Btn";
 class ErrorBoundary extends Component {
   state = { hasError: false, errorMessage: "" };
@@ -38,5 +38,9 @@ class ErrorBoundary extends Component {
     return this.props.children;
   }
 }
+
+ErrorBoundary.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default ErrorBoundary;

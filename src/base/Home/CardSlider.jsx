@@ -82,7 +82,7 @@ const CardSlider = ({ srcSet = [" "], schedule = false }) => {
   );
 };
 
-CardSlider.prototype = {
+CardSlider.PropTypes = {
   srcSet: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
   schedule: PropTypes.bool,
 };

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import Config from "../../component/Config";
 import Svg from "../../component/Svg";
 import Script from "../../component/Script";
@@ -13,7 +13,7 @@ const Video = ({ videoRef }) => (
   </video>
 );
 
-Video.prototype = {
+Video.PropTypes = {
   videoRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
 };
 

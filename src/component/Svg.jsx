@@ -30,7 +30,7 @@ const Svg = ({ id, alt, cClass, method }) => {
 
   return (
     <div className={containerClass} ref={svgRef}>
-      <svg className="svg" arial-label={alt}>
+      <svg className="svg" aria-label={alt}>
         <use href={link}></use>
       </svg>
     </div>
@@ -44,8 +44,4 @@ Svg.propTypes = {
   method: PropTypes.func,
 };
 
-Svg.defaultProps = {
-  cClass: "",
-  method: null,
-};
 export default Svg;
