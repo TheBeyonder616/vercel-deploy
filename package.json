@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "commit-and-push": "npm run build && git add . && git commit -m 'Build and push changes' && git push origin main"
   },
   "dependencies": {
     "react": "^18.3.1",
