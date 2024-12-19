@@ -25,6 +25,7 @@ const Home = () => {
         altSet={Config.ALT_SLIDER_1}
         autoChange={true}
       />
+
       <BrandDeals />
       <article className="home-body">
         <section className="home__card">

@@ -33,10 +33,9 @@ $desktop: 64em;
   &::-webkit-scrollbar {
     display: none;
   }
-  &.slider--small {
-    @include media($desktop) {
-      justify-content: space-between;
-    }
+
+  @include media($desktop) {
+    justify-content: space-between;
   }
 
   &__container {
@@ -337,12 +336,11 @@ $desktop: 64em;
 //?===========================================
 //!=======================================[Schedule]
 .schedule {
-  width: clamp(29rem, 90%, 144rem);
+  width: clamp(29rem, 90%, 1779rem);
   margin-inline: auto;
   padding-block-start: 2rem;
   display: grid;
   gap: 3rem;
-  // border: 1px solid red;
   //?=================================[heading]
   &__heading {
     justify-content: center;
