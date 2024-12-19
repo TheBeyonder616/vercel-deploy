@@ -1,4 +1,5 @@
 import React, { forwardRef } from "react";
+import PropTypes from "prop-types";
 const PageSlider = forwardRef(
   (
     //prettier-ignore
@@ -69,5 +70,13 @@ const PageSlider = forwardRef(
     );
   }
 );
+
+PageSlider.propTypes = {
+  id: PropTypes.string,
+  src: PropTypes.arrayOf(PropTypes.string).isRequired,
+  alt: PropTypes.arrayOf(PropTypes.string).isRequired,
+  dotRef: PropTypes.shape({ current: PropTypes.array }).isRequired,
+  sliderRef: PropTypes.shape({ current: PropTypes.array }).isRequired,
+};
 
 export default React.memo(PageSlider);

@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import icons from "../assets/icons.svg";
 import { useEffect, useRef } from "react";
 /**
@@ -36,4 +37,15 @@ const Svg = ({ id, alt, cClass, method }) => {
   );
 };
 
+Svg.propTypes = {
+  id: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired,
+  cClass: PropTypes.string,
+  method: PropTypes.func,
+};
+
+Svg.defaultProps = {
+  cClass: "",
+  method: null,
+};
 export default Svg;

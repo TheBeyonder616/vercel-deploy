@@ -4,6 +4,7 @@ import Svg from "../../component/Svg";
 import Script from "../../component/Script";
 import Whatsapp from "./Whatsapp";
 import Views from "./View";
+import PropTypes from "prop-types";
 
 const Video = ({ videoRef }) => (
   <video ref={videoRef} controls className="hide">
@@ -11,6 +12,11 @@ const Video = ({ videoRef }) => (
     Your browser does not support the audio element.
   </video>
 );
+
+Video.prototype = {
+  videoRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+};
+
 const Radio2 = () => {
   //!=======================================[Constant]
   const id = Config.IconsId;

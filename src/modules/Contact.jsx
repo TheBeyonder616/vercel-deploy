@@ -5,10 +5,8 @@ import useResizeBackground from "../hooks/useResizeBackGround";
 
 const Contact = () => {
   const parentRef = useRef(null);
-  //prettier-ignore
-  const [form, setForm] = useState({name: "", email: "", message: "",});
-  //prettier-ignore
-  const [errors, setErrors] = useState({ name: "", email: "", message:'' });
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [errors, setErrors] = useState({ name: "", email: "", message: "" });
 
   const validationRules = {
     name: (name) => /^[a-zA-Z\s]{2,30}$/.test(name),

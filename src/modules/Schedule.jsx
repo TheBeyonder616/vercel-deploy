@@ -4,6 +4,7 @@ import scheduleImages from "../component/Assets";
 import ScheduleDay from "./ScheduleDay";
 import Config from "../component/Config";
 import useResizeBackground from "../hooks/useResizeBackGround";
+import PropTypes from "prop-types";
 
 const DesktopHeader = ({
   handleDesktopClick,
@@ -27,6 +28,13 @@ const DesktopHeader = ({
   </ul>
 );
 
+DesktopHeader.propTypes = {
+  handleDesktopClick: PropTypes.func.isRequired,
+  handDesktopKey: PropTypes.func.isRequired,
+  addActiveDay: PropTypes.func.isRequired,
+  daysOfWeek: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
+
 const MobileHeader = ({ handleMobileChange, activeDay, daysOfWeek }) => (
   <select
     className="schedule__dropdown"
@@ -41,6 +49,12 @@ const MobileHeader = ({ handleMobileChange, activeDay, daysOfWeek }) => (
     ))}
   </select>
 );
+
+MobileHeader.propTypes = {
+  handleMobileChange: PropTypes.func.isRequired,
+  activeDay: PropTypes.string.isRequired,
+  daysOfWeek: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
 
 const Schedule = () => {
   //!======================================
@@ -111,7 +125,8 @@ const Schedule = () => {
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
-  });
+  }, [activeDay]);
+
   return (
     <main ref={parentRef} className="main main--schedule">
       <h1 className="visually-hidden"> Pidgin Radio Schedule</h1>
@@ -142,6 +157,17 @@ const Schedule = () => {
       </article>
     </main>
   );
+};
+
+Schedule.propTypes = {
+  initialDay: PropTypes.string,
+  scheduleConfig: PropTypes.shape({
+    DAYS_OF_THE_WEEK: PropTypes.arrayOf(PropTypes.string),
+    SCHEDULE: PropTypes.string,
+  }).isRequired,
+  backgroundColor: PropTypes.string,
+  scheduleImages: PropTypes.object.isRequired,
+  onDayChange: PropTypes.func,
 };
 
 export default Schedule;

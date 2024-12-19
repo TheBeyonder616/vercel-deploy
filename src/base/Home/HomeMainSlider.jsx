@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import PageSlider from "../../component/PageSlider";
 import Svg from "../../component/Svg";
 import { useRef } from "react";
@@ -57,4 +58,9 @@ const HomeMainSlider = ({ srcSet = [], altSet = [], autoChange = false }) => {
   );
 };
 
+HomeMainSlider.propTypes = {
+  srcSet: PropTypes.arrayOf(PropTypes.string).isRequired,
+  altSet: PropTypes.arrayOf(PropTypes.string).isRequired,
+  autoChange: PropTypes.bool,
+};
 export default HomeMainSlider;

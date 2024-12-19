@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 const Images = ({ src = "", alt = "", cClass = "" }) => {
   const classNames = `img-container lazy--img-container ${cClass}`;
   return (
@@ -7,4 +8,13 @@ const Images = ({ src = "", alt = "", cClass = "" }) => {
   );
 };
 
+Images.prototype = {
+  src: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired,
+  cClass: PropTypes.string,
+};
+
+Images.defaultProps = {
+  cClass: "",
+};
 export default Images;

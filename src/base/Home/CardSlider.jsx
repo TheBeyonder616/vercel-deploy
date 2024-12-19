@@ -1,5 +1,6 @@
 import { useMemo, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 import useCardSlider from "../../hooks/useCardSlider";
 import Config from "../../component/Config";
 import Svg from "../../component/Svg";
@@ -81,4 +82,8 @@ const CardSlider = ({ srcSet = [" "], schedule = false }) => {
   );
 };
 
+CardSlider.prototype = {
+  srcSet: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
+  schedule: PropTypes.bool,
+};
 export default CardSlider;

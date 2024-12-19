@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import useLazyLoadImages from "../hooks/useLazyLoadImages";
 
 const ScheduleDay = ({ imageDay }) => {
@@ -13,4 +14,8 @@ const ScheduleDay = ({ imageDay }) => {
   ));
 };
 
+ScheduleDay.propTypes = {
+  imageDay: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string).isRequired)
+    .isRequired,
+};
 export default ScheduleDay;

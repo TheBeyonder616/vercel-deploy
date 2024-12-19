@@ -1,4 +1,6 @@
-const Btn = ({ content = "" }) => {
+import PropTypes from "prop-types";
+
+const Btn = ({ content }) => {
   return (
     <>
       <div className="button__top">{content}</div>
@@ -6,6 +8,10 @@ const Btn = ({ content = "" }) => {
       <div className="button__base"></div>
     </>
   );
+};
+
+Btn.propTypes = {
+  content: PropTypes.string.isRequired,
 };
 
 export default Btn;

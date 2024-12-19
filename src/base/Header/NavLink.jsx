@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import Config from "../../component/Config";
 import Script from "../../component/Script";
 import { useEffect, useRef } from "react";
+import PropTypes from "prop-types";
 
 const NavLink = ({ className = "" }) => {
   const path = Config.Path;
@@ -94,6 +95,10 @@ const NavLink = ({ className = "" }) => {
       </li>
     </ul>
   );
+};
+
+NavLink.prototype = {
+  className: PropTypes.string.isRequired,
 };
 
 export default NavLink;
