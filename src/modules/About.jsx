@@ -32,7 +32,9 @@ const About = () => {
             unite people and inspire positive change. That&apos;s why we&apos;re
             committed to sharing the beauty and richness of Nigerian Pidgin
             English with the world.
-            <span className="span">"100% Naija Music... You Go Feel Am!"</span>
+            <span className="span">
+              &quot;100% Naija Music... You Go Feel Am!&quot;
+            </span>
           </p>
         </div>
       </section>

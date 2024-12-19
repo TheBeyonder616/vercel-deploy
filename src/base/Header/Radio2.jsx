@@ -13,7 +13,7 @@ const Video = ({ videoRef }) => (
   </video>
 );
 
-Video.PropTypes = {
+Video.propTypes = {
   videoRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
 };
 

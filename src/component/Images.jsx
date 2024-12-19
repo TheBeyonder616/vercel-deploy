@@ -8,7 +8,7 @@ const Images = ({ src = "", alt = "", cClass = "" }) => {
   );
 };
 
-Images.PropTypes = {
+Images.propTypes = {
   src: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
   cClass: PropTypes.string,

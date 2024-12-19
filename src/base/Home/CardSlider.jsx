@@ -11,7 +11,7 @@ const CardSlider = ({ srcSet = [" "], schedule = false }) => {
   const id = Config.IconsId;
 
   const { sliderRef, buttonsRef, handleControls, handleScroll } = useCardSlider(
-    { srcSet, schedule }
+    { srcSet }
   );
 
   const navigateToSchedule = useCallback(
@@ -82,7 +82,7 @@ const CardSlider = ({ srcSet = [" "], schedule = false }) => {
   );
 };
 
-CardSlider.PropTypes = {
+CardSlider.propTypes = {
   srcSet: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
   schedule: PropTypes.bool,
 };

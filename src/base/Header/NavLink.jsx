@@ -97,8 +97,8 @@ const NavLink = ({ className = "" }) => {
   );
 };
 
-NavLink.PropTypes = {
-  className: PropTypes.string.isRequired,
+NavLink.propTypes = {
+  className: PropTypes.string,
 };
 
 export default NavLink;

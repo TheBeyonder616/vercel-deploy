@@ -1,5 +1,6 @@
 import { Component } from "react";
 import Btn from "./Btn";
+import PropTypes from "prop-types";
 class ErrorBoundary extends Component {
   state = { hasError: false, errorMessage: "" };
 

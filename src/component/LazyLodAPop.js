@@ -26,12 +26,13 @@ export class LazyLoadImages {
       let loadListener = () =>
         LazyLoadImages.#handleLazyLoad(media, loadListener);
 
+      let source;
       switch (media.tagName) {
         case "IMG":
           media.src = src;
           break;
         case "VIDEO":
-          const source = document.createElement("source");
+          source = document.createElement("source");
           media.src = src;
           source.src = src;
           source.type = "video/mp4";

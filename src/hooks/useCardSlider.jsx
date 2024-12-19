@@ -17,7 +17,7 @@ import Script from "../component/Script";
  * @returns {Function} checkIfScrollable - Function to check if the slider is scrollable and update the right button's state.
  * @returns {number} stepSize - The width of each card (used for scroll steps).
  */
-const useCardSlider = ({ srcSet = [], schedule = false }) => {
+const useCardSlider = ({ srcSet = [] }) => {
   const [stepSize, setStepSize] = useState(0);
   const sliderRef = useRef(null);
   const buttonsRef = useRef({ left: null, right: null });
