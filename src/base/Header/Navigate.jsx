@@ -13,7 +13,15 @@ const Navigate = () => {
     Script.menuAnimation(true);
   };
 
+  const keyOpenMenu = (e) => {
+    const overlay = document.querySelector(`[data-display="open-menu"]`);
+    if (e.key !== "Enter" || !e.target || !overlay.classList.contains("hide"))
+      return;
+    handleOpenMenu();
+  };
+
   const radioComponent = useMemo(() => <Radio2 />, []);
+
   return (
     <nav className="nav" aria-label="Main Navigation">
       <div className="nav__wrapper">
@@ -25,12 +33,14 @@ const Navigate = () => {
               cClass={"logo--svg"}
             />
           </div>
-          <Svg
-            id={id.menu}
-            alt={"Icon menu"}
-            cClass={"menu--svg"}
-            method={handleOpenMenu}
-          />
+          <div
+            className="menu-container"
+            onClick={handleOpenMenu}
+            tabIndex="0"
+            onKeyDown={keyOpenMenu}
+          >
+            <Svg id={id.menu} alt={"Icon menu"} cClass={"menu--svg"} />
+          </div>
           <NavMenu.Desktop />
           <NavMenu.Mobile />
         </section>
