@@ -164,9 +164,9 @@ Schedule.propTypes = {
   scheduleConfig: PropTypes.shape({
     DAYS_OF_THE_WEEK: PropTypes.arrayOf(PropTypes.string),
     SCHEDULE: PropTypes.string,
-  }).isRequired,
+  }),
   backgroundColor: PropTypes.string,
-  scheduleImages: PropTypes.object.isRequired,
+  scheduleImages: PropTypes.object,
   onDayChange: PropTypes.func,
 };
 

@@ -1,4 +1,11 @@
+/**
+ * Class responsible for lazy loading media elements like images and videos.
+ */
 export class LazyLoadImages {
+  /**
+   * Returns the default options for the IntersectionObserver.
+   * @returns {Object} Default options for the IntersectionObserver.
+   */
   static #defaultOptions() {
     return {
       root: null,
@@ -6,6 +13,11 @@ export class LazyLoadImages {
     };
   }
 
+  /**
+   * Handles lazy loading for media elements like images and videos.
+   * @param {HTMLVideoElement | HTMLImageElement} media - The media element (either a video or image).
+   * @param {Function} loadListener - The event listener function to remove.
+   */
   static #handleLazyLoad(media, loadListener) {
     const parent = media.parentNode;
     media.classList.remove("lazy--img");
@@ -16,6 +28,11 @@ export class LazyLoadImages {
       : media.removeEventListener("load", loadListener);
   }
 
+  /**
+   * ?Callback function for the IntersectionObserver, responsible for lazy loading the media.
+   * @param {IntersectionObserverEntry[]} entries - The entries observed by the observer.
+   * @param {IntersectionObserver} observer - The IntersectionObserver instance.
+   */
   static #lazyLoadMedia(entries, observer) {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
@@ -47,14 +64,28 @@ export class LazyLoadImages {
         ? media.addEventListener("canplaythrough", loadListener)
         : media.addEventListener("load", loadListener);
 
+      const remainingElements = document.querySelectorAll(
+        "[data-src]:not([src])"
+      );
+
+      if (remainingElements.length === 0) observer.disconnect();
+
       observer.unobserve(media);
     });
   }
 
+  /**
+   * ?Initializes lazy loading for all media elements with data-src attributes.
+   * @param {Object} options - The options for the IntersectionObserver.
+   * @returns {Function} A function to disconnect the observer when lazy loading is no longer needed.
+   */
   static initLazyLoad(options = LazyLoadImages.#defaultOptions()) {
     const mediaElements = document.querySelectorAll("[data-src]");
-    //prettier-ignore
-    const observer = new IntersectionObserver(LazyLoadImages.#lazyLoadMedia, options);
+
+    const observer = new IntersectionObserver(
+      LazyLoadImages.#lazyLoadMedia,
+      options
+    );
     mediaElements.forEach((media) => observer.observe(media));
 
     return () => observer.disconnect();

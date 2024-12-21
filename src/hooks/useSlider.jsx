@@ -7,9 +7,9 @@ import Config from "../component/Config";
  *
  * @param {Object} params - The parameters for the hook.
  * @param {boolean} [params.autoChange=false] - Flag to enable auto-slide functionality.
- * @param {React.RefObject} params.sliderRef - Reference to the slider element.
- * @param {React.RefObject} params.dotRef - Reference to the dot navigation element.
- * @param {React.RefObject} params.parentRef - Reference to the parent element containing the slider.
+ * @param {React.RefObject<HTMLElement>} params.sliderRef - Reference to the slider element.
+ * @param {React.RefObject<HTMLElement>} params.dotRef - Reference to the dot navigation element.
+ * @param {React.RefObject<HTMLElement>} params.parentRef - Reference to the parent element containing the slider.
  *
  * @returns {Object} - The hook returns an object containing various functions and identifiers for slider behavior.
  *
