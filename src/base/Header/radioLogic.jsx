@@ -1,4 +1,6 @@
 export default class Radio {
+  static #API_TIMEOUT = 9000;
+
   static toggleId(
     playerElement,
     id,
@@ -35,38 +37,6 @@ export default class Radio {
     videoElement.pause();
   }
 
-  static timeout(duration) {
-    return new Promise((_, reject) =>
-      setTimeout(() => reject(new Error("Loading timed out")), duration)
-    );
-  }
-
-  static async tryPlay(videoElement, retries) {
-    for (let attempt = 0; attempt < retries; attempt++) {
-      try {
-        await videoElement.play();
-        return;
-      } catch (err) {
-        console.warn(`Retry ${attempt + 1}: Failed to play`, err);
-      }
-    }
-    throw new Error("Failed to play after retries");
-  }
-
-  static async retryPlay(player, videoElement, timeout, id, retries = 1) {
-    try {
-      await Promise.race([
-        Radio.tryPlay(videoElement, retries),
-        Radio.timeout(timeout),
-      ]);
-    } catch (err) {
-      console.error(err);
-      videoElement.pause();
-      Radio.toggleId(player, id, videoElement, true);
-      throw err;
-    }
-  }
-
   static async handleVideoPlay(
     API_URL,
     player,
@@ -94,16 +64,17 @@ export default class Radio {
         return;
       }
 
-      const res = await fetch(API_URL);
+      const res = await fetch(API_URL, {
+        signal: AbortSignal.timeout(Radio.#API_TIMEOUT),
+      });
       if (!res.ok) throw new Error("failed to load audio");
       videoElement.src = res.url;
       videoElement.load();
 
       videoElement.onloadeddata = async () => {
-        await Radio.retryPlay(player, videoElement, timeout, id);
-
         loading = false;
-        Radio.toggleId(player, id, videoElement, false);
+        videoElement.play();
+        Radio.toggleId(player, id, videoElement, false, false);
       };
     } catch (error) {
       loading = false;
