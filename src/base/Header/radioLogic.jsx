@@ -1,6 +1,16 @@
 export default class Radio {
   static #API_TIMEOUT = 9000;
 
+  /**
+   * ?Updates the player icon based on the current state (error, loading, play, or paused).
+   *
+   * @param {HTMLElement} playerElement - The player element containing the SVG icon.
+   * @param {Object} id - An object with state-specific icon IDs.
+   * @param {HTMLMediaElement} videoElement - The video/audio element to check playback state.
+   * @param {boolean} [error=false] - Indicates if an error occurred.
+   * @param {boolean} [loading=false] - Indicates if the player is loading.
+   * @return {void}
+   */
   static toggleId(
     playerElement,
     id,
@@ -32,19 +42,28 @@ export default class Radio {
       : setId(newHref.trim() + id.paused);
   }
 
+  /**
+   * ?Pauses the video/audio if it is currently playing.
+   *
+   * @param {HTMLMediaElement} videoElement - The video/audio element to pause.
+   * @return {void}
+   */
   static pauseAudio(videoElement) {
     if (videoElement.paused) return;
     videoElement.pause();
   }
 
-  static async handleVideoPlay(
-    API_URL,
-    player,
-    videoElement,
-    loading,
-    timeout,
-    id
-  ) {
+  /**
+   * ?Handles playing or loading the video/audio from an API URL, while updating the player state.
+   *
+   * @param {string} API_URL - The URL of the video/audio to play.
+   * @param {HTMLElement} player - The player element containing the SVG icon.
+   * @param {HTMLMediaElement} videoElement - The video/audio element to play or load.
+   * @param {boolean} loading - Indicates if the player is currently loading.
+   * @param {Object} id - An object with state-specific icon IDs.
+   * @return {Promise<void>}
+   */
+  static async handleVideoPlay(API_URL, player, videoElement, loading, id) {
     try {
       if (!videoElement.paused) {
         videoElement.removeAttribute("src");
@@ -59,11 +78,6 @@ export default class Radio {
         Radio.toggleId(player, id, videoElement, false, true);
       }
 
-      if (videoElement.src === API_URL) {
-        await Radio.retryPlay(player, videoElement, timeout, id);
-        return;
-      }
-
       const res = await fetch(API_URL, {
         signal: AbortSignal.timeout(Radio.#API_TIMEOUT),
       });
@@ -72,9 +86,9 @@ export default class Radio {
       videoElement.load();
 
       videoElement.onloadeddata = async () => {
-        loading = false;
         videoElement.play();
         Radio.toggleId(player, id, videoElement, false, false);
+        loading = false;
       };
     } catch (error) {
       loading = false;
