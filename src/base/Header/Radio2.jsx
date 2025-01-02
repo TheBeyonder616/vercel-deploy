@@ -22,7 +22,7 @@ const Radio2 = () => {
   const id = Config.IconsId;
   const API_URL = Config.Radio.url;
   const DELAY = Config.Radio.delay;
-  const TIMEOUT = Config.TIMEOUT_DURATION;
+  // const TIMEOUT = Config.TIMEOUT_DURATION;
   const videoRef = useRef(null);
   const playerRef = useRef(null);
   const loadingRef = useRef(false);
@@ -36,7 +36,6 @@ const Radio2 = () => {
         playerRef.current,
         videoRef.current,
         loadingRef.current,
-        TIMEOUT,
         id
       );
     }, DELAY)
