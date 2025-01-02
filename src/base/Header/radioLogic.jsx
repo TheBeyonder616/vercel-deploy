@@ -24,6 +24,7 @@ export default class Radio {
     const href = use.getAttribute("href");
     const newHref = href.split("#")[0] + "#";
     const setId = (id) => use.setAttribute("href", id);
+
     if (error) {
       player.classList.remove("spin--svg");
       setId(newHref.trim() + id.error);
