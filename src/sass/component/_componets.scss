@@ -143,6 +143,17 @@
     }
   }
 
+  &.download--spinner-container {
+    --width: clamp(2.5rem, 2vw, 3.5rem);
+    --aspect-ratio: 1;
+    position: absolute;
+    margin-inline: auto;
+    z-index: 10;
+    fill: var(--crl-White);
+    stroke: var(--crl-White);
+    animation: spin 1s linear infinite;
+  }
+
   &.whatsapp--container {
     --width: clamp(2.5rem, 3.4vw, 5.5rem);
     cursor: pointer;

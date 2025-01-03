@@ -36,21 +36,21 @@ export default class Config {
   });
 
   static MediaHandle = Object.freeze({
-    whatsapp: "https://wa.me/2348111356509",
-    twitter: "https://twitter.com/PidginRadio",
-    instagram: "https://instagram.com/PidginRadio01",
-    facebook: "https://facebook.com/PidginRadio",
+    whatsapp: import.meta.env.VITE_WHATSAPP_URL,
+    twitter: import.meta.env.VITE_TWITTER_URL,
+    instagram: import.meta.env.VITE_INSTAGRAM_URL,
+    facebook: import.meta.env.VITE_FACEBOOK_URL,
   });
 
   static Radio = Object.freeze({
-    url: "https://c26.radioboss.fm:8285/stream",
+    url: import.meta.env.VITE_RADIO_URL,
     delay: 900,
   });
 
   static PAYMENT = Object.freeze({
-    script: "https://sdk.monnify.com/plugin/monnify.js",
-    apiKey: "MK_TEST_X4C1GZ1K76",
-    contractCode: "3278343564",
+    script: import.meta.env.VITE_PAYMENT_SCRIPT,
+    apiKey: import.meta.env.VITE_PAYMENT_API_KEY,
+    contractCode: import.meta.env.VITE_PAYMENT_CONTRACT_CODE,
     delay: 900,
   });
 
